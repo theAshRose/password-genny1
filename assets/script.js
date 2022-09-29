@@ -1,11 +1,13 @@
-var charLowerCase = ["abcdefghijklmnopqrstuvwxyz"];
-var charUpperCase = ["ABCDEFGHIJKLMMOPQRSTUVWXYZ"];
-var charNumeric = ["1234567890"];
-var charSpecial = ["!@#$%^&*()_-+=<,>.?/"];
-var generatedPassword = [];
-var finalPassword = [];
-var charLength = [];
-var generateBtn = document.querySelector("#generate");
+//Password generator!
+var charLowerCase = ["abcdefghijklmnopqrstuvwxyz"]; //Defining arrays as solid strings instead of an array of singular strings allows code to execute without including commas as array elements
+var charUpperCase = ["ABCDEFGHIJKLMMOPQRSTUVWXYZ"]; //uppercase array
+var charNumeric = ["1234567890"];                   //number array
+var charSpecial = ["!@#$%^&*()_-+=<,>.?/"];         //special character array
+var generatedPassword = []; //<--------------------aggregate array
+var finalPassword = [];     //<--------------------aggregate array for randomized, trimmed elements
+var charLength = [];        //<--------------------length array defined by user and later used to define length of password
+var generateBtn = document.querySelector("#generate"); //enables button on page
+generateBtn.addEventListener("click", writePassword);
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
@@ -42,4 +44,4 @@ function generatePassword() {
     }
     return finalPassword;
 }
-generateBtn.addEventListener("click", writePassword);
+
