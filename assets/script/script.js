@@ -15,13 +15,13 @@ function writePassword() {   //<------------------------------function initiated
 function generatePassword() {  //Meat and potatoes of app where we gather all user data, combine it, shuffle and trim, then return
     charLength.length = prompt("Please enter a number for password length between 8-128 characters")//defining variable to gather length of user password via prompt
     if (charLength.length < 8 || charLength.length > 128) {     //<-----------------------------------returning boolean value as to whether length designated by user fits within certain peramiters
-        alert("PLEASE RE-READ THE QUESTION, ANSWER APPROPRIATELY!");    //<---------------------------if the 'if' statement returns TRUE an alert is displayed 
-        generatePassword();    //<--------------------------------------------------------------------and the function is called again so the user may enter accepted input
+        alert("PLEASE RE-READ THE QUESTION, ANSWER APPROPRIATELY! Click 'Generate Password' to try again!"); //-------------------------------if the 'if' statement returns TRUE an alert is displayed
+        window.location.reload();    //<--------------------------------------------------------------------page is refreshed to dump user data and prevent bugs
     };
     var charLowerCaseOption = confirm("Press 'OK' if you'd like lowercase letters in your password! 'Cancel' if not");//prompt asking user Y/N question to acceptance of a character type into their password
-    if (charLowerCaseOption) {                               //<--------------------------------------------------------if true, then..
-        generatingPassword += generatingPassword.concat(charLowerCase);  //<--------------------------------------------generatingPassword adds the designated array into itself using += and .concat
-    }
+    if (charLowerCaseOption) {                               //<--------------------------------------------------------if true, then
+        generatingPassword += generatingPassword.concat(charLowerCase);  //<--------------------------------------------generatingPassword adds the designated array into itself using += and .concat,
+    }                                                                                                                 //repeating similar if statements until line 38
     var charUpperCaseOption = confirm("Press 'OK' if you'd like UPPERCASE letters in your password! 'Cancel' if not");
     if (charUpperCaseOption) {
         generatingPassword += generatingPassword.concat(charUpperCase);
@@ -34,12 +34,12 @@ function generatePassword() {  //Meat and potatoes of app where we gather all us
     if (charSpecialOption) {
         generatingPassword += generatingPassword.concat(charSpecial);
     }
-    if (generatingPassword.length === 0) {                                                          //<--above if statements are ran until this final conditional
-        alert("You messed up, pick at least one character type for your password, buddy!");         //---where if true, generatePassword is run again - the user must start over
-        generatePassword();
+    if (generatingPassword.length === 0) {            //<------------------------------------above if statements are ran until this final conditional
+        alert("You messed up, pick at least one character type for your password, buddy! Click 'Generate Password' to try again!");//if true(aka, if they didnt select just one perameter);
+        window.location.reload();                                                                                                 //and page is refreshed to dump all user data, preventing bugs/overwriting;
     }
-    for (var x = 0; x < charLength.length; x++) { //-----For loop iterates through the subsequent math.random function for only the length of "charLength"                                      
-        finalPassword = finalPassword + generatingPassword[Math.floor(Math.random() * generatingPassword.length)]; //compiling random elements from 'generatedPassword' array into 'finalPassword' in accordance with previous for loop(designated length)
-    }
-    return finalPassword; //finally generating our password and returning to the writePassword function, where it is converted into password -- > passwordText --> written into the document
-}
+    for (var x = 0; x < charLength.length; x++) {                                   
+        finalPassword = finalPassword + generatingPassword[Math.floor(Math.random() * generatingPassword.length)]; 
+    }                                //(line 44) For loop iterates through the subsequent math.random function for only the length of "charLength"
+    return finalPassword; //-----------(line 45)compiling random elements from 'generatedPassword' array into 'finalPassword' in accordance with previous for loop(designated length)
+}                         //-----------(line 47)finally generating our password and returning to the writePassword function, where it is converted into password -- > passwordText --> written into the document             
